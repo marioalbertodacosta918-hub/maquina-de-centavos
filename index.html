@@ -51,7 +51,7 @@
 <button onclick="ganharCentavo()">🪙 Ganhar 1 centavo</button>
 
 <script>
-let saldo = 0;
+let saldo = parseFloat(localStorage.getItem("saldo")) || 0;
 
 function ganharCentavo() {
   saldo += 0.01;
