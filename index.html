@@ -20,17 +20,21 @@
   <p id="mensagem"></p>
 
   <script>
-  let saldo = parseFloat(localStorage.getItem("saldo")) || 0;
+    let saldo = parseFloat(localStorage.getItem("saldo")) || 0;
 
     const saldoTela = document.getElementById("saldo");
     const botao = document.getElementById("jogar");
     const mensagem = document.getElementById("mensagem");
 
+    saldoTela.textContent = saldo.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    });
+
     botao.addEventListener("click", function () {
+      saldo += 0.01;
 
-      const ganho = 0.01;
-
-      saldo += ganho;
+      localStorage.setItem("saldo", saldo);
 
       saldoTela.textContent = saldo.toLocaleString("pt-BR", {
         style: "currency",
@@ -42,22 +46,4 @@
   </script>
 
 </body>
-  <h1>🪙 Máquina de Centavos</h1>
-
-<p>Acumule centavos jogando!</p>
-
-<h2>Saldo: R$ <span id="saldo">0,00</span></h2>
-
-<button onclick="ganharCentavo()">🪙 Ganhar 1 centavo</button>
-
-<script>
-let saldo = parseFloat(localStorage.getItem("saldo")) || 0;
-
-function ganharCentavo() {
-  saldo += 0.01;
-  localStorage.setItem("saldo", saldo);
-  document.getElementById("saldo").textContent =
-    saldo.toFixed(2).replace(".", ",");
-}
-</script>
 </html>
