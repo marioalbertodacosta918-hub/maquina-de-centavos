@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Máquina de Centavos</title>
+</head>
+
+<body>
+
+  <h1>🪙 Máquina de Centavos</h1>
+
+  <p>Acumule centavos jogando.</p>
+
+  <h2>Saldo</h2>
+  <p id="saldo">R$ 0,00</p>
+
+  <button id="jogar">JOGAR</button>
+
+  <p id="mensagem"></p>
+
+  <script>
+    let saldo = 0;
+
+    const saldoTela = document.getElementById("saldo");
+    const botao = document.getElementById("jogar");
+    const mensagem = document.getElementById("mensagem");
+
+    botao.addEventListener("click", function () {
+
+      const ganho = 0.01;
+
+      saldo += ganho;
+
+      saldoTela.textContent = saldo.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+
+      mensagem.textContent = "Você ganhou R$ 0,01!";
+    });
+  </script>
+
+</body>
+</html>
