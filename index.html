@@ -20,7 +20,7 @@
   <p id="mensagem"></p>
 
   <script>
-    let saldo = 0;
+  let saldo = parseFloat(localStorage.getItem("saldo")) || 0;
 
     const saldoTela = document.getElementById("saldo");
     const botao = document.getElementById("jogar");
