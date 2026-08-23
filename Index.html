@@ -42,4 +42,21 @@
   </script>
 
 </body>
+  <h1>🪙 Máquina de Centavos</h1>
+
+<p>Acumule centavos jogando!</p>
+
+<h2>Saldo: R$ <span id="saldo">0,00</span></h2>
+
+<button onclick="ganharCentavo()">🪙 Ganhar 1 centavo</button>
+
+<script>
+let saldo = 0;
+
+function ganharCentavo() {
+  saldo += 0.01;
+  document.getElementById("saldo").textContent =
+    saldo.toFixed(2).replace(".", ",");
+}
+</script>
 </html>
