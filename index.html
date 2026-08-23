@@ -51,8 +51,12 @@ function ganharCentavo() {
   let saldo = localStorage.getItem("saldo") || "1.27";
   saldo = parseFloat(saldo) + 0.01;
   localStorage.setItem("saldo", saldo.toFixed(2));
+
+  document.getElementById("saldo").textContent = "R$ " + saldo.toFixed(2).replace(".", ",");
+
   alert("Você ganhou 1 centavo! Saldo: R$ " + saldo.toFixed(2).replace(".", ","));
 }
+</script>
 </script>
 </body>
 </html>
