@@ -86,6 +86,18 @@
       padding: 15px;
       border-radius: 8px;
     }
+
+    .compra {
+      background: #fff8e1;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    .compra strong {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 
@@ -95,7 +107,13 @@
 
     <h1>🪙 Máquina de Centavos</h1>
 
+
+    <!-- =========================
+         SALDO
+    ========================== -->
+
     <div class="saldo">
+
       <div>Saldo acumulado</div>
 
       <strong id="saldo">
@@ -106,14 +124,24 @@
         Tempo de trabalho:
         <span id="tempo">0</span> segundos
       </div>
+
     </div>
+
+
+    <!-- =========================
+         PESQUISADORA
+    ========================== -->
 
     <div class="card">
 
       <h2>🔎 Pesquisadora</h2>
 
-      <div id="pesquisadora" class="status">
+      <div
+        id="pesquisadora"
+        class="status">
+
         🟡 Aguardando pesquisa...
+
       </div>
 
       <p id="tarefa">
@@ -130,12 +158,21 @@
 
     </div>
 
+
+    <!-- =========================
+         CRIADORA
+    ========================== -->
+
     <div class="card">
 
       <h2>✍️ Criadora</h2>
 
-      <div id="criadora" class="status">
+      <div
+        id="criadora"
+        class="status">
+
         🟡 Aguardando oportunidade...
+
       </div>
 
       <p>
@@ -148,12 +185,21 @@
 
     </div>
 
+
+    <!-- =========================
+         VENDEDORA
+    ========================== -->
+
     <div class="card">
 
       <h2>💰 Vendedora</h2>
 
-      <div id="vendedora" class="status">
+      <div
+        id="vendedora"
+        class="status">
+
         🟡 Aguardando produto...
+
       </div>
 
       <p>
@@ -188,51 +234,86 @@
         Aguardando preparação da divulgação.
       </p>
 
+
+      <!-- BOTÃO DO MERCADO PAGO -->
+
       <a
         id="botaoComprar"
         class="desativado"
         href="https://mpago.li/29ZF5dV"
         target="_blank"
         rel="noopener noreferrer"
-        aria-disabled="true"
-      >
+        aria-disabled="true">
+
         Comprar por R$ 19,90
+
       </a>
+
 
       <p id="mensagemCompra"></p>
 
+
+      <!-- ÚLTIMA COMPRA -->
+
+      <div
+        id="ultimaCompra"
+        class="compra">
+
+        <strong>📦 Última compra</strong>
+
+        <p>
+          Nenhuma compra iniciada.
+        </p>
+
+      </div>
+
     </div>
+
+
+    <!-- =========================
+         ATIVIDADE
+    ========================== -->
 
     <div class="card">
 
       <h2>📋 Atividade da empresa</h2>
 
-      <div id="atividade" class="atividade">
+      <div
+        id="atividade"
+        class="atividade">
+
         🟢 Empresa de IA iniciada.
+
       </div>
 
     </div>
 
   </div>
 
+
   <script>
+
 
     /* =========================
        DADOS DA MÁQUINA
-    ========================= */
+    ========================== */
 
     let saldo =
-      parseFloat(localStorage.getItem("saldo")) || 0;
+      parseFloat(
+        localStorage.getItem("saldo")
+      ) || 0;
 
     let tempo =
-      parseInt(localStorage.getItem("tempo")) || 0;
+      parseInt(
+        localStorage.getItem("tempo")
+      ) || 0;
 
     let numeroTarefa = 0;
 
 
     /* =========================
        OPORTUNIDADES
-    ========================= */
+    ========================== */
 
     const oportunidades = [
 
@@ -251,17 +332,22 @@
 
     /* =========================
        ATUALIZAR TELA
-    ========================= */
+    ========================== */
 
     function atualizarTela() {
 
-      document.getElementById("saldo").textContent =
+      document.getElementById(
+        "saldo"
+      ).textContent =
         "R$ " +
         saldo
           .toFixed(2)
           .replace(".", ",");
 
-      document.getElementById("tempo").textContent =
+
+      document.getElementById(
+        "tempo"
+      ).textContent =
         tempo;
 
     }
@@ -269,7 +355,7 @@
 
     /* =========================
        GANHAR CENTAVOS
-    ========================= */
+    ========================== */
 
     function ganharCentavo() {
 
@@ -287,7 +373,7 @@
 
     /* =========================
        TRABALHAR
-    ========================= */
+    ========================== */
 
     function trabalhar() {
 
@@ -305,7 +391,7 @@
 
     /* =========================
        PESQUISAR
-    ========================= */
+    ========================== */
 
     function pesquisar() {
 
@@ -317,39 +403,50 @@
 
       numeroTarefa++;
 
+
       document.getElementById(
         "pesquisadora"
       ).textContent =
         "🟢 Pesquisando oportunidades...";
+
 
       document.getElementById(
         "tarefa"
       ).textContent =
         "Analisando o mercado.";
 
+
       document.getElementById(
         "atividade"
       ).textContent =
         "🔎 Pesquisadora está analisando o mercado.";
 
+
       setTimeout(function() {
+
 
         document.getElementById(
           "pesquisadora"
         ).textContent =
           "🟢 Pesquisa concluída.";
 
+
         document.getElementById(
           "oportunidade"
         ).textContent =
           oportunidade;
+
 
         document.getElementById(
           "atividade"
         ).textContent =
           "🔎 Pesquisadora encontrou uma oportunidade.";
 
-        criarProduto(oportunidade);
+
+        criarProduto(
+          oportunidade
+        );
+
 
       }, 3000);
 
@@ -358,42 +455,55 @@
 
     /* =========================
        CRIAR PRODUTO
-    ========================= */
+    ========================== */
 
-    function criarProduto(oportunidade) {
+    function criarProduto(
+      oportunidade
+    ) {
+
 
       document.getElementById(
         "criadora"
       ).textContent =
         "🟡 Criando produto...";
 
+
       document.getElementById(
         "atividade"
       ).textContent =
         "✍️ Criadora está desenvolvendo o produto.";
 
+
       setTimeout(function() {
+
 
         let produto =
           "Produto digital baseado em: " +
           oportunidade;
+
 
         document.getElementById(
           "criadora"
         ).textContent =
           "🟢 Produto criado.";
 
+
         document.getElementById(
           "produto"
         ).textContent =
           produto;
+
 
         document.getElementById(
           "atividade"
         ).textContent =
           "✍️ Criadora transformou a oportunidade em produto.";
 
-        criarOferta(produto);
+
+        criarOferta(
+          produto
+        );
+
 
       }, 3000);
 
@@ -402,21 +512,27 @@
 
     /* =========================
        CRIAR OFERTA
-    ========================= */
+    ========================== */
 
-    function criarOferta(produto) {
+    function criarOferta(
+      produto
+    ) {
+
 
       document.getElementById(
         "vendedora"
       ).textContent =
         "🟡 Preparando oferta...";
 
+
       document.getElementById(
         "atividade"
       ).textContent =
         "💰 Vendedora está preparando a oferta.";
 
+
       setTimeout(function() {
+
 
         document.getElementById(
           "nomeOferta"
@@ -424,46 +540,60 @@
           "Oferta " +
           numeroTarefa;
 
+
         document.getElementById(
           "descricaoOferta"
         ).textContent =
           "Uma solução digital criada para ajudar pessoas interessadas em: " +
           produto;
 
+
         document.getElementById(
           "precoOferta"
         ).textContent =
           "R$ 19,90";
+
 
         document.getElementById(
           "divulgacao"
         ).textContent =
           "Conheça esta solução digital e descubra como ela pode ajudar você.";
 
+
         document.getElementById(
           "vendedora"
         ).textContent =
           "🟢 Oferta preparada.";
 
-        const botao =
-          document.getElementById("botaoComprar");
 
-        botao.classList.remove("desativado");
+        const botao =
+          document.getElementById(
+            "botaoComprar"
+          );
+
+
+        botao.classList.remove(
+          "desativado"
+        );
+
 
         botao.setAttribute(
           "aria-disabled",
           "false"
         );
 
+
         document.getElementById(
           "mensagemCompra"
         ).textContent =
           "🛒 Oferta disponível para compra.";
 
+
         document.getElementById(
           "atividade"
         ).textContent =
           "💰 Oferta pronta para compra.";
+
 
       }, 3000);
 
@@ -471,32 +601,183 @@
 
 
     /* =========================
+       REGISTRAR COMPRA
+    ========================== */
+
+    function registrarInicioCompra() {
+
+
+      const compra = {
+
+        data:
+          new Date().toLocaleString(
+            "pt-BR"
+          ),
+
+        produto:
+          document.getElementById(
+            "nomeOferta"
+          ).textContent,
+
+        valor:
+          "R$ 19,90",
+
+        status:
+          "Aguardando pagamento"
+
+      };
+
+
+      localStorage.setItem(
+        "ultimaCompra",
+        JSON.stringify(compra)
+      );
+
+
+      document.getElementById(
+        "mensagemCompra"
+      ).textContent =
+        "🛒 Compra iniciada. Aguardando pagamento.";
+
+
+      document.getElementById(
+        "atividade"
+      ).textContent =
+        "💳 Cliente iniciou uma compra de R$ 19,90.";
+
+
+      mostrarUltimaCompra();
+
+    }
+
+
+    /* =========================
+       MOSTRAR ÚLTIMA COMPRA
+    ========================== */
+
+    function mostrarUltimaCompra() {
+
+
+      const dados =
+        localStorage.getItem(
+          "ultimaCompra"
+        );
+
+
+      if (!dados) {
+
+        return;
+
+      }
+
+
+      const compra =
+        JSON.parse(dados);
+
+
+      document.getElementById(
+        "ultimaCompra"
+      ).innerHTML = `
+
+        <strong>📦 Última compra</strong>
+
+        <p>
+          <strong>Produto:</strong>
+          ${compra.produto}
+        </p>
+
+        <p>
+          <strong>Valor:</strong>
+          ${compra.valor}
+        </p>
+
+        <p>
+          <strong>Data:</strong>
+          ${compra.data}
+        </p>
+
+        <p>
+          <strong>Status:</strong>
+          ${compra.status}
+        </p>
+
+      `;
+
+    }
+
+
+    /* =========================
+       CLIQUE NO BOTÃO
+    ========================== */
+
+    document
+      .getElementById(
+        "botaoComprar"
+      )
+      .addEventListener(
+        "click",
+        function(event) {
+
+
+          if (
+            this.classList.contains(
+              "desativado"
+            )
+          ) {
+
+
+            event.preventDefault();
+
+
+            document.getElementById(
+              "mensagemCompra"
+            ).textContent =
+              "⏳ A oferta ainda está sendo preparada.";
+
+
+            return;
+
+          }
+
+
+          registrarInicioCompra();
+
+        }
+      );
+
+
+    /* =========================
        INICIAR SISTEMA
-    ========================= */
+    ========================== */
 
     atualizarTela();
+
+    mostrarUltimaCompra();
 
     pesquisar();
 
 
     /* =========================
        AUTOMAÇÕES
-    ========================= */
+    ========================== */
 
     setInterval(
       ganharCentavo,
       1000
     );
 
+
     setInterval(
       trabalhar,
       1000
     );
 
+
     setInterval(
       pesquisar,
       10000
     );
+
 
   </script>
 
