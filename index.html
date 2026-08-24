@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -12,7 +11,7 @@
 
   <h1>🪙 Máquina de Centavos</h1>
 
-  <p>Acumule centavos automaticamente.</p>
+  <p>Empresa de IA trabalhando automaticamente.</p>
 
   <h2>💰 Painel de Controle</h2>
 
@@ -34,7 +33,7 @@
   <p><strong>📋 Tarefa:</strong></p>
   <p id="tarefa">Nenhuma tarefa.</p>
 
-  <p><strong>📊 Oportunidade encontrada:</strong></p>
+  <p><strong>📊 Oportunidade:</strong></p>
   <p id="oportunidade">Nenhuma ainda.</p>
 
   <hr>
@@ -43,7 +42,7 @@
 
   <p id="criadora">Aguardando oportunidade...</p>
 
-  <p><strong>💡 Produto criado:</strong></p>
+  <p><strong>💡 Produto:</strong></p>
   <p id="produto">Nenhum produto criado.</p>
 
   <hr>
@@ -51,6 +50,18 @@
   <h2>💰 IA Vendedora</h2>
 
   <p id="vendedora">Aguardando produto...</p>
+
+  <p><strong>🏷️ Nome da oferta:</strong></p>
+  <p id="nomeOferta">Nenhuma oferta.</p>
+
+  <p><strong>📝 Descrição:</strong></p>
+  <p id="descricaoOferta">Nenhuma descrição.</p>
+
+  <p><strong>💵 Preço sugerido:</strong></p>
+  <p id="precoOferta">R$ 0,00</p>
+
+  <p><strong>📢 Divulgação:</strong></p>
+  <p id="divulgacao">Nenhuma divulgação.</p>
 
   <hr>
 
@@ -120,10 +131,10 @@
       numeroTarefa++;
 
       document.getElementById("pesquisadora").textContent =
-        "🟢 Pesquisando...";
+        "🟢 Pesquisando oportunidades...";
 
       document.getElementById("tarefa").textContent =
-        "Analisando oportunidades de mercado.";
+        "Analisando o mercado.";
 
       setTimeout(function() {
 
@@ -161,24 +172,37 @@
         document.getElementById("atividade").textContent =
           "✍️ Criadora transformou a oportunidade em produto.";
 
-        venderProduto(produto);
+        criarOferta(produto);
 
       }, 3000);
 
     }
 
-    function venderProduto(produto) {
+    function criarOferta(produto) {
 
       document.getElementById("vendedora").textContent =
-        "🟡 Preparando estratégia de venda...";
+        "🟡 Preparando oferta...";
 
       setTimeout(function() {
 
+        document.getElementById("nomeOferta").textContent =
+          "Oferta " + (numeroTarefa);
+
+        document.getElementById("descricaoOferta").textContent =
+          "Uma solução digital criada para ajudar pessoas interessadas em: " +
+          produto;
+
+        document.getElementById("precoOferta").textContent =
+          "R$ 19,90";
+
+        document.getElementById("divulgacao").textContent =
+          "Conheça esta solução digital e descubra como ela pode ajudar você.";
+
         document.getElementById("vendedora").textContent =
-          "🟢 Produto pronto para divulgação.";
+          "🟢 Oferta preparada.";
 
         document.getElementById("atividade").textContent =
-          "💰 Vendedora preparou o produto para venda.";
+          "💰 Vendedora criou uma oferta.";
 
       }, 3000);
 
