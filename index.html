@@ -24,30 +24,36 @@
     <strong id="tempo">0</strong> segundos
   </p>
 
-  <h2>🤖 Funcionários de IA</h2>
+  <hr>
 
-  <div>
-    <h3>🔎 IA Pesquisadora</h3>
-    <p id="pesquisadora">Aguardando tarefa...</p>
+  <h2>🔎 IA Pesquisadora</h2>
 
-    <h4>📋 Tarefa atual</h4>
-    <p id="tarefa">Nenhuma tarefa.</p>
+  <p id="pesquisadora">Aguardando tarefa...</p>
 
-    <h4>📊 Resultado</h4>
-    <p id="resultado">Nenhum resultado.</p>
-  </div>
+  <p><strong>📋 Tarefa:</strong></p>
+  <p id="tarefa">Nenhuma tarefa.</p>
 
-  <div>
-    <h3>✍️ IA Criadora</h3>
-    <p id="criadora">Trabalhando...</p>
-  </div>
+  <p><strong>📊 Oportunidade encontrada:</strong></p>
+  <p id="oportunidade">Nenhuma ainda.</p>
 
-  <div>
-    <h3>💰 IA Vendedora</h3>
-    <p id="vendedora">Trabalhando...</p>
-  </div>
+  <hr>
 
-  <h2>📋 Última atividade</h2>
+  <h2>✍️ IA Criadora</h2>
+
+  <p id="criadora">Aguardando oportunidade...</p>
+
+  <p><strong>💡 Produto criado:</strong></p>
+  <p id="produto">Nenhum produto criado.</p>
+
+  <hr>
+
+  <h2>💰 IA Vendedora</h2>
+
+  <p id="vendedora">Aguardando produto...</p>
+
+  <hr>
+
+  <h2>📋 Atividade da empresa</h2>
 
   <p id="atividade">Sistema iniciado.</p>
 
@@ -61,12 +67,12 @@
 
     let numeroTarefa = 0;
 
-    const tarefas = [
-      "Pesquisar ideias de produtos digitais.",
-      "Pesquisar oportunidades de mercado.",
-      "Pesquisar serviços que podem ser automatizados.",
-      "Pesquisar problemas que podem virar produtos.",
-      "Pesquisar oportunidades de negócios online."
+    const oportunidades = [
+      "Curso rápido sobre organização financeira.",
+      "Guia digital para pequenos negócios.",
+      "Ferramenta simples para controle de gastos.",
+      "E-book sobre produtividade.",
+      "Modelo digital para planejamento pessoal."
     ];
 
     function atualizarTela() {
@@ -76,6 +82,7 @@
 
       document.getElementById("tempo").textContent =
         tempo;
+
     }
 
     function ganharCentavo() {
@@ -88,33 +95,7 @@
       );
 
       atualizarTela();
-    }
 
-    function executarPesquisa() {
-
-      let tarefa =
-        tarefas[numeroTarefa % tarefas.length];
-
-      numeroTarefa++;
-
-      document.getElementById("pesquisadora").textContent =
-        "🟢 Executando pesquisa...";
-
-      document.getElementById("tarefa").textContent =
-        tarefa;
-
-      setTimeout(function() {
-
-        document.getElementById("pesquisadora").textContent =
-          "🟢 Pesquisa concluída.";
-
-        document.getElementById("resultado").textContent =
-          "Oportunidade identificada para análise.";
-
-        document.getElementById("atividade").textContent =
-          "🔎 IA Pesquisadora concluiu uma tarefa.";
-
-      }, 3000);
     }
 
     function trabalhar() {
@@ -127,17 +108,90 @@
       );
 
       atualizarTela();
+
+    }
+
+    function pesquisar() {
+
+      let oportunidade =
+        oportunidades[numeroTarefa % oportunidades.length];
+
+      numeroTarefa++;
+
+      document.getElementById("pesquisadora").textContent =
+        "🟢 Pesquisando...";
+
+      document.getElementById("tarefa").textContent =
+        "Analisando oportunidades de mercado.";
+
+      setTimeout(function() {
+
+        document.getElementById("pesquisadora").textContent =
+          "🟢 Pesquisa concluída.";
+
+        document.getElementById("oportunidade").textContent =
+          oportunidade;
+
+        document.getElementById("atividade").textContent =
+          "🔎 Pesquisadora encontrou uma oportunidade.";
+
+        criarProduto(oportunidade);
+
+      }, 3000);
+
+    }
+
+    function criarProduto(oportunidade) {
+
+      document.getElementById("criadora").textContent =
+        "🟡 Criando produto...";
+
+      setTimeout(function() {
+
+        let produto =
+          "Produto digital baseado em: " + oportunidade;
+
+        document.getElementById("criadora").textContent =
+          "🟢 Produto criado.";
+
+        document.getElementById("produto").textContent =
+          produto;
+
+        document.getElementById("atividade").textContent =
+          "✍️ Criadora transformou a oportunidade em produto.";
+
+        venderProduto(produto);
+
+      }, 3000);
+
+    }
+
+    function venderProduto(produto) {
+
+      document.getElementById("vendedora").textContent =
+        "🟡 Preparando estratégia de venda...";
+
+      setTimeout(function() {
+
+        document.getElementById("vendedora").textContent =
+          "🟢 Produto pronto para divulgação.";
+
+        document.getElementById("atividade").textContent =
+          "💰 Vendedora preparou o produto para venda.";
+
+      }, 3000);
+
     }
 
     atualizarTela();
 
-    executarPesquisa();
+    pesquisar();
 
     setInterval(ganharCentavo, 1000);
 
     setInterval(trabalhar, 1000);
 
-    setInterval(executarPesquisa, 6000);
+    setInterval(pesquisar, 10000);
 
   </script>
 
