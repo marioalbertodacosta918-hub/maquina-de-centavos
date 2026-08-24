@@ -27,7 +27,6 @@
   <hr>
 
   <h2>🔎 IA Pesquisadora</h2>
-
   <p id="pesquisadora">Aguardando tarefa...</p>
 
   <p><strong>📋 Tarefa:</strong></p>
@@ -39,7 +38,6 @@
   <hr>
 
   <h2>✍️ IA Criadora</h2>
-
   <p id="criadora">Aguardando oportunidade...</p>
 
   <p><strong>💡 Produto:</strong></p>
@@ -57,11 +55,17 @@
   <p><strong>📝 Descrição:</strong></p>
   <p id="descricaoOferta">Nenhuma descrição.</p>
 
-  <p><strong>💵 Preço sugerido:</strong></p>
+  <p><strong>💵 Preço:</strong></p>
   <p id="precoOferta">R$ 0,00</p>
 
   <p><strong>📢 Divulgação:</strong></p>
   <p id="divulgacao">Nenhuma divulgação.</p>
+
+  <button id="botaoComprar" onclick="comprar()" disabled>
+    🛒 Comprar
+  </button>
+
+  <p id="mensagemCompra"></p>
 
   <hr>
 
@@ -186,7 +190,7 @@
       setTimeout(function() {
 
         document.getElementById("nomeOferta").textContent =
-          "Oferta " + (numeroTarefa);
+          "Oferta " + numeroTarefa;
 
         document.getElementById("descricaoOferta").textContent =
           "Uma solução digital criada para ajudar pessoas interessadas em: " +
@@ -201,10 +205,23 @@
         document.getElementById("vendedora").textContent =
           "🟢 Oferta preparada.";
 
+        document.getElementById("botaoComprar").disabled =
+          false;
+
         document.getElementById("atividade").textContent =
-          "💰 Vendedora criou uma oferta.";
+          "💰 Oferta pronta para compra.";
 
       }, 3000);
+
+    }
+
+    function comprar() {
+
+      document.getElementById("mensagemCompra").textContent =
+        "✅ Pedido registrado para teste. Nenhum pagamento foi realizado.";
+
+      document.getElementById("atividade").textContent =
+        "🛒 Um pedido de teste foi registrado.";
 
     }
 
