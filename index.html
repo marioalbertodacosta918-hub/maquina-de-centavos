@@ -3,60 +3,311 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Máquina de Centavos</title>
+
+  <title>Máquina de Centavos - Empresa de IA</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f4f7;
+      margin: 0;
+      padding: 20px;
+      color: #222;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+
+    .saldo {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .ganho {
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .funcionario {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 12px;
+    }
+
+    .funcionario h3 {
+      margin-top: 0;
+    }
+
+    button {
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      background: #222;
+      color: white;
+    }
+
+    .ativo {
+      color: green;
+      font-weight: bold;
+    }
+
+    .inativo {
+      color: #777;
+      font-weight: bold;
+    }
+
+    .status {
+      text-align: center;
+      font-size: 18px;
+    }
+  </style>
 </head>
 
 <body>
 
+<div class="container">
+
   <h1>🪙 Máquina de Centavos</h1>
 
-  <p>Acumule centavos jogando.</p>
+  <div class="card">
+    <h2>🏢 Empresa de IA</h2>
 
-  <h2>Saldo</h2>
-  <p id="saldo">R$ 0,00</p>
+    <p>
+      Uma empresa formada por funcionários de Inteligência Artificial
+      trabalhando para executar tarefas e gerar valor.
+    </p>
 
-  <button id="jogar">Jogar</button>
+    <div class="status">
+      Status da empresa:
+      <span id="statusEmpresa" class="ativo">ATIVA</span>
+    </div>
+  </div>
 
-  <p id="mensagem"></p>
 
-  <script>
-    let saldo = parseFloat(localStorage.getItem("saldo")) || 0;
+  <div class="card">
 
-    const saldoTela = document.getElementById("saldo");
-    const botao = document.getElementById("jogar");
-    const mensagem = document.getElementById("mensagem");
+    <h2>💰 Saldo da Empresa</h2>
 
-    saldoTela.textContent = saldo.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL"
-    });
+    <div class="saldo">
+      R$ <span id="saldo">1,27</span>
+    </div>
 
-    botao.addEventListener("click", function () {
-      saldo += 0.01;
+    <div class="ganho">
+      Ganho simulado: <strong>R$ 0,01 por segundo</strong>
+    </div>
 
-      localStorage.setItem("saldo", saldo);
+    <p style="text-align:center;">
+      Tempo de funcionamento:
+      <strong><span id="tempo">0</span></strong> segundos
+    </p>
 
-      saldoTela.textContent = saldo.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
+  </div>
 
-      mensagem.textContent = "Você ganhou R$ 0,01!";
-    });
-  </script>
-<button onclick="ganharCentavo()">🪙 Ganhar 1 centavo</button>
+
+  <div class="card">
+
+    <h2>🤖 Funcionários de IA</h2>
+
+    <div class="funcionario">
+      <h3>🔎 IA Pesquisadora</h3>
+      <p>Pesquisa informações, oportunidades e novos mercados.</p>
+      <span id="status1" class="ativo">ATIVA</span>
+    </div>
+
+    <div class="funcionario">
+      <h3>✍️ IA Criadora</h3>
+      <p>Cria textos, ideias, conteúdos e materiais para a empresa.</p>
+      <span id="status2" class="ativo">ATIVA</span>
+    </div>
+
+    <div class="funcionario">
+      <h3>💼 IA Comercial</h3>
+      <p>Analisa oportunidades comerciais e possíveis clientes.</p>
+      <span id="status3" class="ativo">ATIVA</span>
+    </div>
+
+    <div class="funcionario">
+      <h3>📊 IA Analista</h3>
+      <p>Analisa os resultados e acompanha o desempenho da empresa.</p>
+      <span id="status4" class="ativo">ATIVA</span>
+    </div>
+
+    <div class="funcionario">
+      <h3>👔 IA Gerente</h3>
+      <p>Coordena os outros funcionários e organiza as tarefas.</p>
+      <span id="status5" class="ativo">ATIVA</span>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>⚙️ Controle da Empresa</h2>
+
+    <button class="btn" onclick="alternarEmpresa()">
+      Ligar / Desligar Empresa
+    </button>
+
+    <button class="btn" onclick="ganharCentavo()">
+      🪙 Testar +1 Centavo
+    </button>
+
+    <button class="btn" onclick="zerarTempo()">
+      🔄 Zerar Contador
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>📊 Produção</h2>
+
+    <p>
+      Funcionários ativos:
+      <strong><span id="funcionariosAtivos">5</span></strong>
+    </p>
+
+    <p>
+      Centavos produzidos:
+      <strong><span id="centavos">0</span></strong>
+    </p>
+
+  </div>
+
+</div>
+
 
 <script>
-function ganharCentavo() {
-  let saldo = localStorage.getItem("saldo") || "1.27";
-  saldo = parseFloat(saldo) + 0.01;
-  localStorage.setItem("saldo", saldo.toFixed(2));
 
-  document.getElementById("saldo").textContent = "R$ " + saldo.toFixed(2).replace(".", ",");
+  let saldo = parseFloat(
+    localStorage.getItem("saldo") || "1.27"
+  );
 
-  alert("Você ganhou 1 centavo! Saldo: R$ " + saldo.toFixed(2).replace(".", ","));
-}
+  let tempo = parseInt(
+    localStorage.getItem("tempo") || "0"
+  );
+
+  let centavos = parseInt(
+    localStorage.getItem("centavos") || "0"
+  );
+
+  let empresaAtiva =
+    localStorage.getItem("empresaAtiva") !== "false";
+
+
+  function atualizarTela() {
+
+    document.getElementById("saldo").textContent =
+      saldo.toFixed(2).replace(".", ",");
+
+    document.getElementById("tempo").textContent =
+      tempo;
+
+    document.getElementById("centavos").textContent =
+      centavos;
+
+    document.getElementById("statusEmpresa").textContent =
+      empresaAtiva ? "ATIVA" : "DESLIGADA";
+
+    document.getElementById("statusEmpresa").className =
+      empresaAtiva ? "ativo" : "inativo";
+
+    localStorage.setItem(
+      "saldo",
+      saldo.toFixed(2)
+    );
+
+    localStorage.setItem(
+      "tempo",
+      tempo
+    );
+
+    localStorage.setItem(
+      "centavos",
+      centavos
+    );
+
+    localStorage.setItem(
+      "empresaAtiva",
+      empresaAtiva
+    );
+  }
+
+
+  function ganharCentavo() {
+
+    saldo += 0.01;
+
+    centavos++;
+
+    atualizarTela();
+
+  }
+
+
+  function alternarEmpresa() {
+
+    empresaAtiva = !empresaAtiva;
+
+    atualizarTela();
+
+  }
+
+
+  function zerarTempo() {
+
+    tempo = 0;
+
+    atualizarTela();
+
+  }
+
+
+  setInterval(function() {
+
+    if (empresaAtiva) {
+
+      tempo++;
+
+      saldo += 0.01;
+
+      centavos++;
+
+      atualizarTela();
+
+    }
+
+  }, 1000);
+
+
+  atualizarTela();
+
 </script>
 
-</body>c
+</body>
 </html>
