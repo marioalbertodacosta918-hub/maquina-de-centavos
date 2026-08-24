@@ -18,15 +18,23 @@
   <p>Saldo:</p>
   <h2 id="saldo">R$ 0,00</h2>
 
-  <p>🤖 Funcionários ativos: <strong id="funcionarios">3</strong></p>
+  <p>🤖 Funcionários ativos: <strong>3</strong></p>
 
-  <p>⏱️ Tempo de trabalho: <strong id="tempo">0</strong> segundos</p>
+  <p>⏱️ Tempo de trabalho:
+    <strong id="tempo">0</strong> segundos
+  </p>
 
   <h2>🤖 Funcionários de IA</h2>
 
   <div>
     <h3>🔎 IA Pesquisadora</h3>
-    <p id="pesquisadora">Trabalhando...</p>
+    <p id="pesquisadora">Aguardando tarefa...</p>
+
+    <h4>📋 Tarefa atual</h4>
+    <p id="tarefa">Nenhuma tarefa.</p>
+
+    <h4>📊 Resultado</h4>
+    <p id="resultado">Nenhum resultado.</p>
   </div>
 
   <div>
@@ -45,8 +53,21 @@
 
   <script>
 
-    let saldo = parseFloat(localStorage.getItem("saldo")) || 0;
-    let tempo = parseInt(localStorage.getItem("tempo")) || 0;
+    let saldo =
+      parseFloat(localStorage.getItem("saldo")) || 0;
+
+    let tempo =
+      parseInt(localStorage.getItem("tempo")) || 0;
+
+    let numeroTarefa = 0;
+
+    const tarefas = [
+      "Pesquisar ideias de produtos digitais.",
+      "Pesquisar oportunidades de mercado.",
+      "Pesquisar serviços que podem ser automatizados.",
+      "Pesquisar problemas que podem virar produtos.",
+      "Pesquisar oportunidades de negócios online."
+    ];
 
     function atualizarTela() {
 
@@ -55,46 +76,68 @@
 
       document.getElementById("tempo").textContent =
         tempo;
-
     }
 
     function ganharCentavo() {
 
       saldo += 0.01;
 
-      localStorage.setItem("saldo", saldo.toFixed(2));
+      localStorage.setItem(
+        "saldo",
+        saldo.toFixed(2)
+      );
 
       atualizarTela();
+    }
 
+    function executarPesquisa() {
+
+      let tarefa =
+        tarefas[numeroTarefa % tarefas.length];
+
+      numeroTarefa++;
+
+      document.getElementById("pesquisadora").textContent =
+        "🟢 Executando pesquisa...";
+
+      document.getElementById("tarefa").textContent =
+        tarefa;
+
+      setTimeout(function() {
+
+        document.getElementById("pesquisadora").textContent =
+          "🟢 Pesquisa concluída.";
+
+        document.getElementById("resultado").textContent =
+          "Oportunidade identificada para análise.";
+
+        document.getElementById("atividade").textContent =
+          "🔎 IA Pesquisadora concluiu uma tarefa.";
+
+      }, 3000);
     }
 
     function trabalhar() {
 
       tempo++;
 
-      localStorage.setItem("tempo", tempo);
-
-      document.getElementById("pesquisadora").textContent =
-        "🔎 Pesquisando oportunidades...";
-
-      document.getElementById("criadora").textContent =
-        "✍️ Criando novas ideias...";
-
-      document.getElementById("vendedora").textContent =
-        "💰 Analisando oportunidades de venda...";
-
-      document.getElementById("atividade").textContent =
-        "🤖 As 3 IAs estão trabalhando.";
+      localStorage.setItem(
+        "tempo",
+        tempo
+      );
 
       atualizarTela();
-
     }
 
     atualizarTela();
 
+    executarPesquisa();
+
     setInterval(ganharCentavo, 1000);
 
     setInterval(trabalhar, 1000);
+
+    setInterval(executarPesquisa, 6000);
 
   </script>
 
