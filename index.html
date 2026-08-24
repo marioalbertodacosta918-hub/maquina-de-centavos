@@ -55,6 +55,7 @@
 
     #botaoComprar {
       display: inline-block;
+      box-sizing: border-box;
       padding: 14px 22px;
       background: #009ee3;
       color: white;
@@ -65,11 +66,14 @@
       cursor: pointer;
       width: 100%;
       margin-top: 15px;
+      text-align: center;
+      text-decoration: none;
     }
 
-    #botaoComprar:disabled {
+    #botaoComprar.desativado {
       background: #aaa;
       cursor: not-allowed;
+      pointer-events: none;
     }
 
     #mensagemCompra {
@@ -104,14 +108,11 @@
       </div>
     </div>
 
-
     <div class="card">
 
       <h2>🔎 Pesquisadora</h2>
 
-      <div
-        id="pesquisadora"
-        class="status">
+      <div id="pesquisadora" class="status">
         🟡 Aguardando pesquisa...
       </div>
 
@@ -129,14 +130,11 @@
 
     </div>
 
-
     <div class="card">
 
       <h2>✍️ Criadora</h2>
 
-      <div
-        id="criadora"
-        class="status">
+      <div id="criadora" class="status">
         🟡 Aguardando oportunidade...
       </div>
 
@@ -150,14 +148,11 @@
 
     </div>
 
-
     <div class="card">
 
       <h2>💰 Vendedora</h2>
 
-      <div
-        id="vendedora"
-        class="status">
+      <div id="vendedora" class="status">
         🟡 Aguardando produto...
       </div>
 
@@ -193,32 +188,32 @@
         Aguardando preparação da divulgação.
       </p>
 
-      <button
+      <a
         id="botaoComprar"
-        onclick="registrarPagamento()"
-        disabled>
+        class="desativado"
+        href="https://mpago.li/29ZF5dV"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-disabled="true"
+      >
         Comprar por R$ 19,90
-      </button>
+      </a>
 
       <p id="mensagemCompra"></p>
 
     </div>
 
-
     <div class="card">
 
       <h2>📋 Atividade da empresa</h2>
 
-      <div
-        id="atividade"
-        class="atividade">
+      <div id="atividade" class="atividade">
         🟢 Empresa de IA iniciada.
       </div>
 
     </div>
 
   </div>
-
 
   <script>
 
@@ -322,24 +317,20 @@
 
       numeroTarefa++;
 
-
       document.getElementById(
         "pesquisadora"
       ).textContent =
         "🟢 Pesquisando oportunidades...";
-
 
       document.getElementById(
         "tarefa"
       ).textContent =
         "Analisando o mercado.";
 
-
       document.getElementById(
         "atividade"
       ).textContent =
         "🔎 Pesquisadora está analisando o mercado.";
-
 
       setTimeout(function() {
 
@@ -348,18 +339,15 @@
         ).textContent =
           "🟢 Pesquisa concluída.";
 
-
         document.getElementById(
           "oportunidade"
         ).textContent =
           oportunidade;
 
-
         document.getElementById(
           "atividade"
         ).textContent =
           "🔎 Pesquisadora encontrou uma oportunidade.";
-
 
         criarProduto(oportunidade);
 
@@ -379,12 +367,10 @@
       ).textContent =
         "🟡 Criando produto...";
 
-
       document.getElementById(
         "atividade"
       ).textContent =
         "✍️ Criadora está desenvolvendo o produto.";
-
 
       setTimeout(function() {
 
@@ -392,24 +378,20 @@
           "Produto digital baseado em: " +
           oportunidade;
 
-
         document.getElementById(
           "criadora"
         ).textContent =
           "🟢 Produto criado.";
-
 
         document.getElementById(
           "produto"
         ).textContent =
           produto;
 
-
         document.getElementById(
           "atividade"
         ).textContent =
           "✍️ Criadora transformou a oportunidade em produto.";
-
 
         criarOferta(produto);
 
@@ -429,12 +411,10 @@
       ).textContent =
         "🟡 Preparando oferta...";
 
-
       document.getElementById(
         "atividade"
       ).textContent =
         "💰 Vendedora está preparando a oferta.";
-
 
       setTimeout(function() {
 
@@ -444,37 +424,41 @@
           "Oferta " +
           numeroTarefa;
 
-
         document.getElementById(
           "descricaoOferta"
         ).textContent =
           "Uma solução digital criada para ajudar pessoas interessadas em: " +
           produto;
 
-
         document.getElementById(
           "precoOferta"
         ).textContent =
           "R$ 19,90";
-
 
         document.getElementById(
           "divulgacao"
         ).textContent =
           "Conheça esta solução digital e descubra como ela pode ajudar você.";
 
-
         document.getElementById(
           "vendedora"
         ).textContent =
           "🟢 Oferta preparada.";
 
+        const botao =
+          document.getElementById("botaoComprar");
+
+        botao.classList.remove("desativado");
+
+        botao.setAttribute(
+          "aria-disabled",
+          "false"
+        );
 
         document.getElementById(
-          "botaoComprar"
-        ).disabled =
-          false;
-
+          "mensagemCompra"
+        ).textContent =
+          "🛒 Oferta disponível para compra.";
 
         document.getElementById(
           "atividade"
@@ -482,32 +466,6 @@
           "💰 Oferta pronta para compra.";
 
       }, 3000);
-
-    }
-
-
-    /* =========================
-       PAGAMENTO MERCADO PAGO
-    ========================= */
-
-    function registrarPagamento() {
-
-      document.getElementById(
-        "mensagemCompra"
-      ).textContent =
-        "💳 Abrindo o Mercado Pago...";
-
-
-      document.getElementById(
-        "atividade"
-      ).textContent =
-        "🛒 Redirecionando para o pagamento.";
-
-
-      window.open(
-        "https://mpago.li/29ZF5dV",
-        "_blank"
-      );
 
     }
 
@@ -530,12 +488,10 @@
       1000
     );
 
-
     setInterval(
       trabalhar,
       1000
     );
-
 
     setInterval(
       pesquisar,
