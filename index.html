@@ -4,102 +4,227 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Máquina de Centavos</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+      color: #222;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .saldo {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .saldo strong {
+      display: block;
+      font-size: 32px;
+      margin-top: 10px;
+    }
+
+    .card {
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .status {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    #botaoComprar {
+      display: inline-block;
+      padding: 14px 22px;
+      background: #009ee3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    #botaoComprar:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+
+    #mensagemCompra {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .atividade {
+      background: #eef7ff;
+      padding: 15px;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>🪙 Máquina de Centavos</h1>
+  <div class="container">
 
-  <p>Empresa de IA trabalhando automaticamente.</p>
+    <h1>🪙 Máquina de Centavos</h1>
 
-  <h2>💰 Painel de Controle</h2>
+    <div class="saldo">
+      <div>Saldo acumulado</div>
 
-  <p>Saldo:</p>
-  <h2 id="saldo">R$ 0,00</h2>
+      <strong id="saldo">
+        R$ 0,00
+      </strong>
 
-  <p>🤖 Funcionários ativos: <strong>3</strong></p>
-
-  <p>⏱️ Tempo de trabalho:
-    <strong id="tempo">0</strong> segundos
-  </p>
-
-  <hr>
-
-  <h2>🔎 IA Pesquisadora</h2>
-  <p id="pesquisadora">Aguardando tarefa...</p>
-
-  <p><strong>📋 Tarefa:</strong></p>
-  <p id="tarefa">Nenhuma tarefa.</p>
-
-  <p><strong>📊 Oportunidade:</strong></p>
-  <p id="oportunidade">Nenhuma ainda.</p>
-
-  <hr>
-
-  <h2>✍️ IA Criadora</h2>
-  <p id="criadora">Aguardando oportunidade...</p>
-
-  <p><strong>💡 Produto:</strong></p>
-  <p id="produto">Nenhum produto criado.</p>
-
-  <hr>
-
-  <h2>💰 IA Vendedora</h2>
-
-  <p id="vendedora">Aguardando produto...</p>
-
-  <p><strong>🏷️ Nome da oferta:</strong></p>
-  <p id="nomeOferta">Nenhuma oferta.</p>
-
-  <p><strong>📝 Descrição:</strong></p>
-  <p id="descricaoOferta">Nenhuma descrição.</p>
-
-  <p><strong>💵 Preço:</strong></p>
-  <p id="precoOferta">R$ 0,00</p>
-
-  <p><strong>📢 Divulgação:</strong></p>
-  <p id="divulgacao">Nenhuma divulgação.</p>
-
-  <a
-<a
- <a
-  id="botaoComprar"
-  href="https://mpago.li/29ZF5dV"
-  target="_blank"
-  rel="noopener noreferrer"
-  style="
-    display:inline-block;
-    padding:12px 20px;
-    background:#009ee3;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:bold;
-  "
->
-  🛒 Comprar por R$ 19,90
-</a>
-
-<p id="mensagemCompra"></p>
-
-<hr>
-
-<h2>📋 Atividade da empresa</h2>
-
-<p id="atividade">Sistema iniciado.</p> 
+      <div>
+        Tempo de trabalho:
+        <span id="tempo">0</span> segundos
+      </div>
+    </div>
 
 
+    <div class="card">
 
-  <p id="mensagemCompra"></p>
+      <h2>🔎 Pesquisadora</h2>
 
-  <hr>
+      <div
+        id="pesquisadora"
+        class="status">
+        🟡 Aguardando pesquisa...
+      </div>
 
-  <h2>📋 Atividade da empresa</h2>
+      <p id="tarefa">
+        Preparando análise do mercado.
+      </p>
 
-  <p id="atividade">Sistema iniciado.</p>
+      <p>
+        <strong>Oportunidade encontrada:</strong>
+      </p>
+
+      <p id="oportunidade">
+        Nenhuma oportunidade encontrada ainda.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>✍️ Criadora</h2>
+
+      <div
+        id="criadora"
+        class="status">
+        🟡 Aguardando oportunidade...
+      </div>
+
+      <p>
+        <strong>Produto:</strong>
+      </p>
+
+      <p id="produto">
+        Nenhum produto criado ainda.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>💰 Vendedora</h2>
+
+      <div
+        id="vendedora"
+        class="status">
+        🟡 Aguardando produto...
+      </div>
+
+      <p>
+        <strong>Nome da oferta:</strong>
+      </p>
+
+      <p id="nomeOferta">
+        Nenhuma oferta criada.
+      </p>
+
+      <p>
+        <strong>Descrição:</strong>
+      </p>
+
+      <p id="descricaoOferta">
+        Aguardando criação da oferta.
+      </p>
+
+      <p>
+        <strong>Preço:</strong>
+      </p>
+
+      <p id="precoOferta">
+        R$ 0,00
+      </p>
+
+      <p>
+        <strong>Divulgação:</strong>
+      </p>
+
+      <p id="divulgacao">
+        Aguardando preparação da divulgação.
+      </p>
+
+      <button
+        id="botaoComprar"
+        onclick="registrarPagamento()"
+        disabled>
+        Comprar por R$ 19,90
+      </button>
+
+      <p id="mensagemCompra"></p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>📋 Atividade da empresa</h2>
+
+      <div
+        id="atividade"
+        class="atividade">
+        🟢 Empresa de IA iniciada.
+      </div>
+
+    </div>
+
+  </div>
+
 
   <script>
+
+    /* =========================
+       DADOS DA MÁQUINA
+    ========================= */
 
     let saldo =
       parseFloat(localStorage.getItem("saldo")) || 0;
@@ -109,23 +234,47 @@
 
     let numeroTarefa = 0;
 
+
+    /* =========================
+       OPORTUNIDADES
+    ========================= */
+
     const oportunidades = [
+
       "Curso rápido sobre organização financeira.",
+
       "Guia digital para pequenos negócios.",
+
       "Ferramenta simples para controle de gastos.",
+
       "E-book sobre produtividade.",
+
       "Modelo digital para planejamento pessoal."
+
     ];
+
+
+    /* =========================
+       ATUALIZAR TELA
+    ========================= */
 
     function atualizarTela() {
 
       document.getElementById("saldo").textContent =
-        "R$ " + saldo.toFixed(2).replace(".", ",");
+        "R$ " +
+        saldo
+          .toFixed(2)
+          .replace(".", ",");
 
       document.getElementById("tempo").textContent =
         tempo;
 
     }
+
+
+    /* =========================
+       GANHAR CENTAVOS
+    ========================= */
 
     function ganharCentavo() {
 
@@ -140,6 +289,11 @@
 
     }
 
+
+    /* =========================
+       TRABALHAR
+    ========================= */
+
     function trabalhar() {
 
       tempo++;
@@ -153,29 +307,59 @@
 
     }
 
+
+    /* =========================
+       PESQUISAR
+    ========================= */
+
     function pesquisar() {
 
       let oportunidade =
-        oportunidades[numeroTarefa % oportunidades.length];
+        oportunidades[
+          numeroTarefa %
+          oportunidades.length
+        ];
 
       numeroTarefa++;
 
-      document.getElementById("pesquisadora").textContent =
+
+      document.getElementById(
+        "pesquisadora"
+      ).textContent =
         "🟢 Pesquisando oportunidades...";
 
-      document.getElementById("tarefa").textContent =
+
+      document.getElementById(
+        "tarefa"
+      ).textContent =
         "Analisando o mercado.";
+
+
+      document.getElementById(
+        "atividade"
+      ).textContent =
+        "🔎 Pesquisadora está analisando o mercado.";
+
 
       setTimeout(function() {
 
-        document.getElementById("pesquisadora").textContent =
+        document.getElementById(
+          "pesquisadora"
+        ).textContent =
           "🟢 Pesquisa concluída.";
 
-        document.getElementById("oportunidade").textContent =
+
+        document.getElementById(
+          "oportunidade"
+        ).textContent =
           oportunidade;
 
-        document.getElementById("atividade").textContent =
+
+        document.getElementById(
+          "atividade"
+        ).textContent =
           "🔎 Pesquisadora encontrou uma oportunidade.";
+
 
         criarProduto(oportunidade);
 
@@ -183,24 +367,49 @@
 
     }
 
+
+    /* =========================
+       CRIAR PRODUTO
+    ========================= */
+
     function criarProduto(oportunidade) {
 
-      document.getElementById("criadora").textContent =
+      document.getElementById(
+        "criadora"
+      ).textContent =
         "🟡 Criando produto...";
+
+
+      document.getElementById(
+        "atividade"
+      ).textContent =
+        "✍️ Criadora está desenvolvendo o produto.";
+
 
       setTimeout(function() {
 
         let produto =
-          "Produto digital baseado em: " + oportunidade;
+          "Produto digital baseado em: " +
+          oportunidade;
 
-        document.getElementById("criadora").textContent =
+
+        document.getElementById(
+          "criadora"
+        ).textContent =
           "🟢 Produto criado.";
 
-        document.getElementById("produto").textContent =
+
+        document.getElementById(
+          "produto"
+        ).textContent =
           produto;
 
-        document.getElementById("atividade").textContent =
+
+        document.getElementById(
+          "atividade"
+        ).textContent =
           "✍️ Criadora transformou a oportunidade em produto.";
+
 
         criarOferta(produto);
 
@@ -208,67 +417,133 @@
 
     }
 
+
+    /* =========================
+       CRIAR OFERTA
+    ========================= */
+
     function criarOferta(produto) {
 
-      document.getElementById("vendedora").textContent =
+      document.getElementById(
+        "vendedora"
+      ).textContent =
         "🟡 Preparando oferta...";
+
+
+      document.getElementById(
+        "atividade"
+      ).textContent =
+        "💰 Vendedora está preparando a oferta.";
+
 
       setTimeout(function() {
 
-        document.getElementById("nomeOferta").textContent =
-          "Oferta " + numeroTarefa;
+        document.getElementById(
+          "nomeOferta"
+        ).textContent =
+          "Oferta " +
+          numeroTarefa;
 
-        document.getElementById("descricaoOferta").textContent =
+
+        document.getElementById(
+          "descricaoOferta"
+        ).textContent =
           "Uma solução digital criada para ajudar pessoas interessadas em: " +
           produto;
 
-        document.getElementById("precoOferta").textContent =
+
+        document.getElementById(
+          "precoOferta"
+        ).textContent =
           "R$ 19,90";
 
-        document.getElementById("divulgacao").textContent =
+
+        document.getElementById(
+          "divulgacao"
+        ).textContent =
           "Conheça esta solução digital e descubra como ela pode ajudar você.";
 
-        document.getElementById("vendedora").textContent =
+
+        document.getElementById(
+          "vendedora"
+        ).textContent =
           "🟢 Oferta preparada.";
 
-        document.getElementById("botaoComprar").disabled =
+
+        document.getElementById(
+          "botaoComprar"
+        ).disabled =
           false;
 
-        document.getElementById("atividade").textContent =
+
+        document.getElementById(
+          "atividade"
+        ).textContent =
           "💰 Oferta pronta para compra.";
 
       }, 3000);
 
     }
 
-    function comprar() {
 
-      document.getElementById("mensagemCompra").textContent =
-        "✅ Pedido registrado para teste. Nenhum pagamento foi realizado.";
+    /* =========================
+       PAGAMENTO MERCADO PAGO
+    ========================= */
 
-      document.getElementById("atividade").textContent =
-        "🛒 Um pedido de teste foi registrado.";
+    function registrarPagamento() {
+
+      document.getElementById(
+        "mensagemCompra"
+      ).textContent =
+        "💳 Abrindo o Mercado Pago...";
+
+
+      document.getElementById(
+        "atividade"
+      ).textContent =
+        "🛒 Redirecionando para o pagamento.";
+
+
+      window.open(
+        "https://mpago.li/29ZF5dV",
+        "_blank"
+      );
 
     }
 
- 
-atualizarTela();
+
+    /* =========================
+       INICIAR SISTEMA
+    ========================= */
+
+    atualizarTela();
 
     pesquisar();
 
-    setInterval(ganharCentavo, 1000);
 
-    setInterval(trabalhar, 1000);
+    /* =========================
+       AUTOMAÇÕES
+    ========================= */
 
-    setInterval(pesquisar, 10000);
+    setInterval(
+      ganharCentavo,
+      1000
+    );
+
+
+    setInterval(
+      trabalhar,
+      1000
+    );
+
+
+    setInterval(
+      pesquisar,
+      10000
+    );
 
   </script>
 
-<script>
-function registrarPagamento() {
-  alert("Pagamento iniciado pelo Mercado Pago.");
-}
-</script>
 </body>
 
 </html>
