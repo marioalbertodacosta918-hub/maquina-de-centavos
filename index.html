@@ -1,9 +1,44 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Máquina de Centavos</title>
-</head><body>  <h1>🪙 Máquina de Centavos</h1>  <p>Acumule centavos automaticamente.</p>  <h2>Saldo</h2>  <p id="saldo">R$ 1,27</p>  <script>
+</head>
+
+<body>
+
+  <h1>🪙 Máquina de Centavos</h1>
+
+  <p>Acumule centavos automaticamente.</p>
+
+  <h2>Saldo</h2>
+
+  <p id="saldo">R$ 1,27</p>
+
+  <h2>🤖 Funcionários de IA</h2>
+
+  <div>
+    <h3>🔎 IA Pesquisadora</h3>
+    <p>Pesquisa oportunidades para gerar receita.</p>
+    <p>Status: 🟢 Trabalhando</p>
+  </div>
+
+  <div>
+    <h3>✍️ IA Criadora</h3>
+    <p>Cria produtos e conteúdos digitais.</p>
+    <p>Status: 🟢 Trabalhando</p>
+  </div>
+
+  <div>
+    <h3>💰 IA Vendedora</h3>
+    <p>Procura formas de transformar produtos em receita.</p>
+    <p>Status: 🟢 Trabalhando</p>
+  </div>
+
+  <script>
+
     let saldo = parseFloat(localStorage.getItem("saldo")) || 1.27;
 
     function atualizarTela() {
@@ -21,22 +56,8 @@
 
     setInterval(ganharCentavo, 1000);
 
-<div>
-  <h3>🔎 IA Pesquisadora</h3>
-  <p>Pesquisa oportunidades para gerar receita.</p>
-  <p>Status: 🟢 Trabalhando</p>
-</div>
+  </script>
 
-<div>
-  <h3>✍️ IA Criadora</h3>
-  <p>Cria produtos e conteúdos digitais.</p>
-  <p>Status: 🟢 Trabalhando</p>
-</div>
+</body>
 
-<div>
-  <h3>💰 IA Vendedora</h3>
-  <p>Procura formas de transformar produtos em receita.</p>
-  <p>Status: 🟢 Trabalhando</p>
-</div>
-</script></body>
 </html>
