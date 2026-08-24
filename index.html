@@ -14,32 +14,31 @@
   <p>Acumule centavos automaticamente.</p>
 
   <h2>Saldo</h2>
-
-  <p id="saldo">R$ 1,27</p>
+  <p id="saldo">R$ 0,00</p>
 
   <h2>🤖 Funcionários de IA</h2>
 
   <div>
     <h3>🔎 IA Pesquisadora</h3>
-    <p>Pesquisa oportunidades para gerar receita.</p>
-    <p>Status: 🟢 Trabalhando</p>
+    <p id="pesquisadora">Procurando oportunidades...</p>
   </div>
 
   <div>
     <h3>✍️ IA Criadora</h3>
-    <p>Cria produtos e conteúdos digitais.</p>
-    <p>Status: 🟢 Trabalhando</p>
+    <p id="criadora">Criando ideias...</p>
   </div>
 
   <div>
     <h3>💰 IA Vendedora</h3>
-    <p>Procura formas de transformar produtos em receita.</p>
-    <p>Status: 🟢 Trabalhando</p>
+    <p id="vendedora">Analisando oportunidades...</p>
   </div>
+
+  <h2>📋 Atividade</h2>
+  <p id="atividade">Sistema iniciado.</p>
 
   <script>
 
-    let saldo = parseFloat(localStorage.getItem("saldo")) || 1.27;
+    let saldo = parseFloat(localStorage.getItem("saldo")) || 0;
 
     function atualizarTela() {
       document.getElementById("saldo").textContent =
@@ -48,13 +47,35 @@
 
     function ganharCentavo() {
       saldo += 0.01;
+
       localStorage.setItem("saldo", saldo.toFixed(2));
+
       atualizarTela();
+    }
+
+    function trabalharIA() {
+
+      document.getElementById("pesquisadora").textContent =
+        "🔎 Pesquisando novas oportunidades...";
+
+      document.getElementById("criadora").textContent =
+        "✍️ Criando novas ideias...";
+
+      document.getElementById("vendedora").textContent =
+        "💰 Analisando possibilidades de venda...";
+
+      document.getElementById("atividade").textContent =
+        "🤖 As IAs estão trabalhando.";
+
     }
 
     atualizarTela();
 
+    trabalharIA();
+
     setInterval(ganharCentavo, 1000);
+
+    setInterval(trabalharIA, 5000);
 
   </script>
 
