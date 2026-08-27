@@ -107,10 +107,7 @@
 
     <h1>🪙 Máquina de Centavos</h1>
 
-    <!-- SALDO -->
-
     <div class="saldo">
-
       <div>Saldo acumulado</div>
 
       <strong id="saldo">
@@ -121,10 +118,7 @@
         Tempo de trabalho:
         <span id="tempo">0</span> segundos
       </div>
-
     </div>
-
-    <!-- PESQUISADORA -->
 
     <div class="card">
 
@@ -148,8 +142,6 @@
 
     </div>
 
-    <!-- CRIADORA -->
-
     <div class="card">
 
       <h2>✍️ Criadora</h2>
@@ -167,8 +159,6 @@
       </p>
 
     </div>
-
-    <!-- VENDEDORA -->
 
     <div class="card">
 
@@ -210,8 +200,6 @@
         Aguardando preparação da divulgação.
       </p>
 
-      <!-- BOTÃO MERCADO PAGO -->
-
       <a
         id="botaoComprar"
         class="desativado"
@@ -226,8 +214,6 @@
 
       <p id="mensagemCompra"></p>
 
-      <!-- ÚLTIMA COMPRA -->
-
       <div id="ultimaCompra" class="compra">
 
         <strong>📦 Última compra</strong>
@@ -239,8 +225,6 @@
       </div>
 
     </div>
-
-    <!-- ATIVIDADE -->
 
     <div class="card">
 
@@ -298,17 +282,13 @@
 
     function atualizarTela() {
 
-      document.getElementById(
-        "saldo"
-      ).textContent =
+      document.getElementById("saldo").textContent =
         "R$ " +
         saldo
           .toFixed(2)
           .replace(".", ",");
 
-      document.getElementById(
-        "tempo"
-      ).textContent =
+      document.getElementById("tempo").textContent =
         tempo;
 
     }
@@ -409,9 +389,7 @@
        CRIAR PRODUTO
     ========================== */
 
-    function criarProduto(
-      oportunidade
-    ) {
+    function criarProduto(oportunidade) {
 
       document.getElementById(
         "criadora"
@@ -457,9 +435,7 @@
        CRIAR OFERTA
     ========================== */
 
-    function criarOferta(
-      produto
-    ) {
+    function criarOferta(produto) {
 
       document.getElementById(
         "vendedora"
@@ -640,9 +616,7 @@
     ========================== */
 
     document
-      .getElementById(
-        "botaoComprar"
-      )
+      .getElementById("botaoComprar")
       .addEventListener(
         "click",
         function(event) {
@@ -678,20 +652,44 @@
 
       try {
 
+        /*
+         * IMPORTANTE:
+         * O arquivo está dentro de /api/status
+         */
         const response = await fetch(
-          "https://maquina-de-centavos-webhook.vercel.app/status"
+          "https://maquina-de-centavos-webhook.vercel.app/api/status",
+          {
+            method: "GET",
+            cache: "no-store"
+          }
         );
 
         if (!response.ok) {
+          console.log(
+            "Status HTTP:",
+            response.status
+          );
           return;
         }
 
         const dados =
           await response.json();
 
+        console.log(
+          "Resposta do status:",
+          dados
+        );
+
+        /*
+         * Só continua se o servidor
+         * informar explicitamente
+         * que existe pagamento aprovado.
+         */
+
         if (
           dados.aprovado === true &&
-          dados.pagamento
+          dados.pagamento &&
+          dados.pagamento.status === "approved"
         ) {
 
           const compraSalva =
@@ -708,35 +706,46 @@
               compraSalva
             );
 
+          /*
+           * Evita registrar o mesmo pagamento
+           * duas vezes no navegador.
+           */
+
           if (
-            compra.status !==
-            "Pagamento aprovado"
+            compra.idPagamento ===
+            dados.pagamento.id
           ) {
-
-            compra.status =
-              "Pagamento aprovado";
-
-            compra.idPagamento =
-              dados.pagamento.id;
-
-            localStorage.setItem(
-              "ultimaCompra",
-              JSON.stringify(compra)
-            );
-
-            document.getElementById(
-              "mensagemCompra"
-            ).textContent =
-              "✅ Pagamento aprovado!";
-
-            document.getElementById(
-              "atividade"
-            ).textContent =
-              "✅ Pagamento de R$ 19,90 confirmado pelo Mercado Pago.";
-
-            mostrarUltimaCompra();
-
+            return;
           }
+
+          compra.status =
+            "Pagamento aprovado";
+
+          compra.idPagamento =
+            dados.pagamento.id;
+
+          localStorage.setItem(
+            "ultimaCompra",
+            JSON.stringify(compra)
+          );
+
+          document.getElementById(
+            "mensagemCompra"
+          ).textContent =
+            "✅ Pagamento aprovado!";
+
+          document.getElementById(
+            "atividade"
+          ).textContent =
+            "✅ Pagamento de R$ " +
+            Number(
+              dados.pagamento.valor
+            )
+              .toFixed(2)
+              .replace(".", ",") +
+            " confirmado pelo Mercado Pago.";
+
+          mostrarUltimaCompra();
 
         }
 
@@ -799,5 +808,3 @@
 </body>
 
 </html>
-
-    
