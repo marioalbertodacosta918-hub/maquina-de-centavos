@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
+<!DOCTYPE html><html lang="pt-BR"><head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Máquina de Centavos</title>
-
-  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Máquina de Centavos</title>  <style>
     body {
       font-family: Arial, sans-serif;
       background: #f4f6f8;
@@ -73,7 +66,6 @@
     #botaoComprar.desativado {
       background: #aaa;
       cursor: not-allowed;
-      pointer-events: none;
     }
 
     #mensagemCompra {
@@ -98,151 +90,136 @@
       display: inline-block;
       margin-bottom: 5px;
     }
-  </style>
-</head>
+  </style></head><body>  <div class="container"><h1>🪙 Máquina de Centavos</h1>
 
-<body>
+<div class="saldo">
+  <div>Saldo acumulado</div>
 
-  <div class="container">
+  <strong id="saldo">
+    R$ 0,00
+  </strong>
 
-    <h1>🪙 Máquina de Centavos</h1>
+  <div>
+    Tempo de trabalho:
+    <span id="tempo">0</span> segundos
+  </div>
+</div>
 
-    <div class="saldo">
-      <div>Saldo acumulado</div>
+<div class="card">
 
-      <strong id="saldo">
-        R$ 0,00
-      </strong>
+  <h2>🔎 Pesquisadora</h2>
 
-      <div>
-        Tempo de trabalho:
-        <span id="tempo">0</span> segundos
-      </div>
-    </div>
+  <div id="pesquisadora" class="status">
+    🟡 Aguardando pesquisa...
+  </div>
 
-    <div class="card">
+  <p id="tarefa">
+    Preparando análise do mercado.
+  </p>
 
-      <h2>🔎 Pesquisadora</h2>
+  <p>
+    <strong>Oportunidade encontrada:</strong>
+  </p>
 
-      <div id="pesquisadora" class="status">
-        🟡 Aguardando pesquisa...
-      </div>
+  <p id="oportunidade">
+    Nenhuma oportunidade encontrada ainda.
+  </p>
 
-      <p id="tarefa">
-        Preparando análise do mercado.
-      </p>
+</div>
 
-      <p>
-        <strong>Oportunidade encontrada:</strong>
-      </p>
+<div class="card">
 
-      <p id="oportunidade">
-        Nenhuma oportunidade encontrada ainda.
-      </p>
+  <h2>✍️ Criadora</h2>
 
-    </div>
+  <div id="criadora" class="status">
+    🟡 Aguardando oportunidade...
+  </div>
 
-    <div class="card">
+  <p>
+    <strong>Produto:</strong>
+  </p>
 
-      <h2>✍️ Criadora</h2>
+  <p id="produto">
+    Nenhum produto criado ainda.
+  </p>
 
-      <div id="criadora" class="status">
-        🟡 Aguardando oportunidade...
-      </div>
+</div>
 
-      <p>
-        <strong>Produto:</strong>
-      </p>
+<div class="card">
 
-      <p id="produto">
-        Nenhum produto criado ainda.
-      </p>
+  <h2>💰 Vendedora</h2>
 
-    </div>
+  <div id="vendedora" class="status">
+    🟡 Aguardando produto...
+  </div>
 
-    <div class="card">
+  <p>
+    <strong>Nome da oferta:</strong>
+  </p>
 
-      <h2>💰 Vendedora</h2>
+  <p id="nomeOferta">
+    Nenhuma oferta criada.
+  </p>
 
-      <div id="vendedora" class="status">
-        🟡 Aguardando produto...
-      </div>
+  <p>
+    <strong>Descrição:</strong>
+  </p>
 
-      <p>
-        <strong>Nome da oferta:</strong>
-      </p>
+  <p id="descricaoOferta">
+    Aguardando criação da oferta.
+  </p>
 
-      <p id="nomeOferta">
-        Nenhuma oferta criada.
-      </p>
+  <p>
+    <strong>Preço:</strong>
+  </p>
 
-      <p>
-        <strong>Descrição:</strong>
-      </p>
+  <p id="precoOferta">
+    R$ 0,00
+  </p>
 
-      <p id="descricaoOferta">
-        Aguardando criação da oferta.
-      </p>
+  <p>
+    <strong>Divulgação:</strong>
+  </p>
 
-      <p>
-        <strong>Preço:</strong>
-      </p>
+  <p id="divulgacao">
+    Aguardando preparação da divulgação.
+  </p>
 
-      <p id="precoOferta">
-        R$ 0,00
-      </p>
+  <button
+    id="botaoComprar"
+    class="desativado"
+    type="button"
+    disabled>
 
-      <p>
-        <strong>Divulgação:</strong>
-      </p>
+    Comprar por R$ 19,90
 
-      <p id="divulgacao">
-        Aguardando preparação da divulgação.
-      </p>
+  </button>
 
-      <a
-        id="botaoComprar"
-        class="desativado"
-        href="https://maquina-de-centavos-webhook.vercel.app/api/create-preference"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-disabled="true">
+  <p id="mensagemCompra"></p>
 
-        Comprar por R$ 19,90
+  <div id="ultimaCompra" class="compra">
 
-      </a>
+    <strong>📦 Última compra</strong>
 
-      <p id="mensagemCompra"></p>
-
-      <div id="ultimaCompra" class="compra">
-
-        <strong>📦 Última compra</strong>
-
-        <p>
-          Nenhuma compra iniciada.
-        </p>
-
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <h2>📋 Atividade da empresa</h2>
-
-      <div id="atividade" class="atividade">
-        🟢 Empresa de IA iniciada.
-      </div>
-
-    </div>
+    <p>
+      Nenhuma compra iniciada.
+    </p>
 
   </div>
 
-  <script>
+</div>
 
-    /* =========================
-       DADOS DA MÁQUINA
-    ========================== */
+<div class="card">
+
+  <h2>📋 Atividade da empresa</h2>
+
+  <div id="atividade" class="atividade">
+    🟢 Empresa de IA iniciada.
+  </div>
+
+</div>
+
+  </div>  <script>
 
     let saldo =
       parseFloat(
@@ -256,47 +233,23 @@
 
     let numeroTarefa = 0;
 
-
-    /* =========================
-       OPORTUNIDADES
-    ========================== */
-
     const oportunidades = [
-
       "Curso rápido sobre organização financeira.",
-
       "Guia digital para pequenos negócios.",
-
       "Ferramenta simples para controle de gastos.",
-
       "E-book sobre produtividade.",
-
       "Modelo digital para planejamento pessoal."
-
     ];
-
-
-    /* =========================
-       ATUALIZAR TELA
-    ========================== */
 
     function atualizarTela() {
 
       document.getElementById("saldo").textContent =
         "R$ " +
-        saldo
-          .toFixed(2)
-          .replace(".", ",");
+        saldo.toFixed(2).replace(".", ",");
 
       document.getElementById("tempo").textContent =
         tempo;
-
     }
-
-
-    /* =========================
-       GANHAR CENTAVO
-    ========================== */
 
     function ganharCentavo() {
 
@@ -308,13 +261,7 @@
       );
 
       atualizarTela();
-
     }
-
-
-    /* =========================
-       TRABALHAR
-    ========================== */
 
     function trabalhar() {
 
@@ -326,13 +273,7 @@
       );
 
       atualizarTela();
-
     }
-
-
-    /* =========================
-       PESQUISAR
-    ========================== */
 
     function pesquisar() {
 
@@ -344,61 +285,37 @@
 
       numeroTarefa++;
 
-      document.getElementById(
-        "pesquisadora"
-      ).textContent =
+      document.getElementById("pesquisadora").textContent =
         "🟢 Pesquisando oportunidades...";
 
-      document.getElementById(
-        "tarefa"
-      ).textContent =
+      document.getElementById("tarefa").textContent =
         "Analisando o mercado.";
 
-      document.getElementById(
-        "atividade"
-      ).textContent =
+      document.getElementById("atividade").textContent =
         "🔎 Pesquisadora está analisando o mercado.";
 
       setTimeout(function() {
 
-        document.getElementById(
-          "pesquisadora"
-        ).textContent =
+        document.getElementById("pesquisadora").textContent =
           "🟢 Pesquisa concluída.";
 
-        document.getElementById(
-          "oportunidade"
-        ).textContent =
+        document.getElementById("oportunidade").textContent =
           oportunidade;
 
-        document.getElementById(
-          "atividade"
-        ).textContent =
+        document.getElementById("atividade").textContent =
           "🔎 Pesquisadora encontrou uma oportunidade.";
 
-        criarProduto(
-          oportunidade
-        );
+        criarProduto(oportunidade);
 
       }, 3000);
-
     }
-
-
-    /* =========================
-       CRIAR PRODUTO
-    ========================== */
 
     function criarProduto(oportunidade) {
 
-      document.getElementById(
-        "criadora"
-      ).textContent =
+      document.getElementById("criadora").textContent =
         "🟡 Criando produto...";
 
-      document.getElementById(
-        "atividade"
-      ).textContent =
+      document.getElementById("atividade").textContent =
         "✍️ Criadora está desenvolvendo o produto.";
 
       setTimeout(function() {
@@ -407,160 +324,66 @@
           "Produto digital baseado em: " +
           oportunidade;
 
-        document.getElementById(
-          "criadora"
-        ).textContent =
+        document.getElementById("criadora").textContent =
           "🟢 Produto criado.";
 
-        document.getElementById(
-          "produto"
-        ).textContent =
+        document.getElementById("produto").textContent =
           produto;
 
-        document.getElementById(
-          "atividade"
-        ).textContent =
+        document.getElementById("atividade").textContent =
           "✍️ Criadora transformou a oportunidade em produto.";
 
-        criarOferta(
-          produto
-        );
+        criarOferta(produto);
 
       }, 3000);
-
     }
-
-
-    /* =========================
-       CRIAR OFERTA
-    ========================== */
 
     function criarOferta(produto) {
 
-      document.getElementById(
-        "vendedora"
-      ).textContent =
+      document.getElementById("vendedora").textContent =
         "🟡 Preparando oferta...";
 
-      document.getElementById(
-        "atividade"
-      ).textContent =
+      document.getElementById("atividade").textContent =
         "💰 Vendedora está preparando a oferta.";
 
       setTimeout(function() {
 
-        document.getElementById(
-          "nomeOferta"
-        ).textContent =
-          "Oferta " +
-          numeroTarefa;
+        document.getElementById("nomeOferta").textContent =
+          "Oferta " + numeroTarefa;
 
-        document.getElementById(
-          "descricaoOferta"
-        ).textContent =
+        document.getElementById("descricaoOferta").textContent =
           "Uma solução digital criada para ajudar pessoas interessadas em: " +
           produto;
 
-        document.getElementById(
-          "precoOferta"
-        ).textContent =
+        document.getElementById("precoOferta").textContent =
           "R$ 19,90";
 
-        document.getElementById(
-          "divulgacao"
-        ).textContent =
+        document.getElementById("divulgacao").textContent =
           "Conheça esta solução digital e descubra como ela pode ajudar você.";
 
-        document.getElementById(
-          "vendedora"
-        ).textContent =
+        document.getElementById("vendedora").textContent =
           "🟢 Oferta preparada.";
 
         const botao =
-          document.getElementById(
-            "botaoComprar"
-          );
+          document.getElementById("botaoComprar");
 
-        botao.classList.remove(
-          "desativado"
-        );
+        botao.classList.remove("desativado");
 
-        botao.setAttribute(
-          "aria-disabled",
-          "false"
-        );
+        botao.disabled = false;
 
-        document.getElementById(
-          "mensagemCompra"
-        ).textContent =
+        document.getElementById("mensagemCompra").textContent =
           "🛒 Oferta disponível para compra.";
 
-        document.getElementById(
-          "atividade"
-        ).textContent =
+        document.getElementById("atividade").textContent =
           "💰 Oferta pronta para compra.";
 
       }, 3000);
-
     }
-
-
-    /* =========================
-       REGISTRAR COMPRA
-    ========================== */
-
-    function registrarInicioCompra() {
-
-      const compra = {
-
-        data:
-          new Date().toLocaleString(
-            "pt-BR"
-          ),
-
-        produto:
-          document.getElementById(
-            "nomeOferta"
-          ).textContent,
-
-        valor:
-          "R$ 19,90",
-
-        status:
-          "Aguardando pagamento"
-
-      };
-
-      localStorage.setItem(
-        "ultimaCompra",
-        JSON.stringify(compra)
-      );
-
-      document.getElementById(
-        "mensagemCompra"
-      ).textContent =
-        "🛒 Compra iniciada. Aguardando pagamento.";
-
-      document.getElementById(
-        "atividade"
-      ).textContent =
-        "💳 Cliente iniciou uma compra de R$ 19,90.";
-
-      mostrarUltimaCompra();
-
-    }
-
-
-    /* =========================
-       MOSTRAR ÚLTIMA COMPRA
-    ========================== */
 
     function mostrarUltimaCompra() {
 
       const dados =
-        localStorage.getItem(
-          "ultimaCompra"
-        );
+        localStorage.getItem("ultimaCompra");
 
       if (!dados) {
         return;
@@ -569,9 +392,7 @@
       const compra =
         JSON.parse(dados);
 
-      document.getElementById(
-        "ultimaCompra"
-      ).innerHTML = `
+      document.getElementById("ultimaCompra").innerHTML = `
 
         <strong>📦 Última compra</strong>
 
@@ -607,55 +428,110 @@
         }
 
       `;
-
     }
 
+    async function iniciarCompra() {
 
-    /* =========================
-       CLIQUE NO BOTÃO
-    ========================== */
+      const botao =
+        document.getElementById("botaoComprar");
+
+      botao.disabled = true;
+
+      document.getElementById("mensagemCompra").textContent =
+        "⏳ Criando pagamento...";
+
+      try {
+
+        const response = await fetch(
+          "https://maquina-de-centavos-webhook.vercel.app/api/criar-preferência",
+          {
+            method: "GET",
+            cache: "no-store"
+          }
+        );
+
+        if (response.redirected) {
+
+          registrarInicioCompra();
+
+          window.location.href =
+            response.url;
+
+          return;
+        }
+
+        const dados =
+          await response.json();
+
+        if (dados.init_point) {
+
+          registrarInicioCompra();
+
+          window.location.href =
+            dados.init_point;
+
+          return;
+        }
+
+        throw new Error(
+          dados.erro ||
+          "Não foi possível criar o pagamento."
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("mensagemCompra").textContent =
+          "❌ Erro ao criar o pagamento: " +
+          error.message;
+
+        botao.disabled = false;
+      }
+    }
+
+    function registrarInicioCompra() {
+
+      const compra = {
+
+        data:
+          new Date().toLocaleString("pt-BR"),
+
+        produto:
+          document.getElementById("nomeOferta").textContent,
+
+        valor:
+          "R$ 19,90",
+
+        status:
+          "Aguardando pagamento"
+      };
+
+      localStorage.setItem(
+        "ultimaCompra",
+        JSON.stringify(compra)
+      );
+
+      document.getElementById("mensagemCompra").textContent =
+        "🛒 Compra iniciada. Aguardando pagamento.";
+
+      document.getElementById("atividade").textContent =
+        "💳 Cliente iniciou uma compra de R$ 19,90.";
+
+      mostrarUltimaCompra();
+    }
 
     document
       .getElementById("botaoComprar")
       .addEventListener(
         "click",
-        function(event) {
-
-          if (
-            this.classList.contains(
-              "desativado"
-            )
-          ) {
-
-            event.preventDefault();
-
-            document.getElementById(
-              "mensagemCompra"
-            ).textContent =
-              "⏳ A oferta ainda está sendo preparada.";
-
-            return;
-
-          }
-
-          registrarInicioCompra();
-
-        }
+        iniciarCompra
       );
-
-
-    /* =========================
-       VERIFICAR PAGAMENTO
-    ========================== */
 
     async function verificarPagamento() {
 
       try {
 
-        /*
-         * IMPORTANTE:
-         * O arquivo está dentro de /api/status
-         */
         const response = await fetch(
           "https://maquina-de-centavos-webhook.vercel.app/api/status",
           {
@@ -665,10 +541,6 @@
         );
 
         if (!response.ok) {
-          console.log(
-            "Status HTTP:",
-            response.status
-          );
           return;
         }
 
@@ -680,36 +552,21 @@
           dados
         );
 
-        /*
-         * Só continua se o servidor
-         * informar explicitamente
-         * que existe pagamento aprovado.
-         */
-
         if (
           dados.aprovado === true &&
           dados.pagamento &&
-          dados.pagamento.status === "approved"
+          dados.pagamento.status === "aprovado"
         ) {
 
           const compraSalva =
-            localStorage.getItem(
-              "ultimaCompra"
-            );
+            localStorage.getItem("ultimaCompra");
 
           if (!compraSalva) {
             return;
           }
 
           const compra =
-            JSON.parse(
-              compraSalva
-            );
-
-          /*
-           * Evita registrar o mesmo pagamento
-           * duas vezes no navegador.
-           */
+            JSON.parse(compraSalva);
 
           if (
             compra.idPagamento ===
@@ -729,24 +586,17 @@
             JSON.stringify(compra)
           );
 
-          document.getElementById(
-            "mensagemCompra"
-          ).textContent =
+          document.getElementById("mensagemCompra").textContent =
             "✅ Pagamento aprovado!";
 
-          document.getElementById(
-            "atividade"
-          ).textContent =
+          document.getElementById("atividade").textContent =
             "✅ Pagamento de R$ " +
-            Number(
-              dados.pagamento.valor
-            )
+            Number(dados.pagamento.valor)
               .toFixed(2)
               .replace(".", ",") +
             " confirmado pelo Mercado Pago.";
 
           mostrarUltimaCompra();
-
         }
 
       } catch (error) {
@@ -755,15 +605,8 @@
           "Erro ao verificar pagamento:",
           error
         );
-
       }
-
     }
-
-
-    /* =========================
-       VERIFICAR AUTOMATICAMENTE
-    ========================== */
 
     setInterval(
       verificarPagamento,
@@ -772,21 +615,11 @@
 
     verificarPagamento();
 
-
-    /* =========================
-       INICIAR SISTEMA
-    ========================== */
-
     atualizarTela();
 
     mostrarUltimaCompra();
 
     pesquisar();
-
-
-    /* =========================
-       AUTOMAÇÕES
-    ========================== */
 
     setInterval(
       ganharCentavo,
@@ -803,8 +636,6 @@
       10000
     );
 
-  </script>
-
-</body>
-
-</html>
+  </script></body></html>
+  
+    
