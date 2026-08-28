@@ -47,7 +47,7 @@
     }
 
     #botaoComprar {
-      display: inline-block;
+      display: block;
       box-sizing: border-box;
       padding: 14px 22px;
       background: #009ee3;
@@ -186,12 +186,13 @@
   </p>
 
   <button
-  id="botaoComprar"
-  class="desativado"
-  type="button">
-  Comprar por R$ 19,90
-</button>
-    
+    id="botaoComprar"
+    class="desativado"
+    type="button">
+
+    Comprar por R$ 19,90
+
+  </button>
 
   <p id="mensagemCompra"></p>
 
@@ -219,6 +220,10 @@
 
   </div>  <script>
 
+    /* =========================
+       DADOS DA MÁQUINA
+    ========================== */
+
     let saldo =
       parseFloat(
         localStorage.getItem("saldo")
@@ -231,23 +236,47 @@
 
     let numeroTarefa = 0;
 
+
+    /* =========================
+       OPORTUNIDADES
+    ========================== */
+
     const oportunidades = [
+
       "Curso rápido sobre organização financeira.",
+
       "Guia digital para pequenos negócios.",
+
       "Ferramenta simples para controle de gastos.",
+
       "E-book sobre produtividade.",
+
       "Modelo digital para planejamento pessoal."
+
     ];
+
+
+    /* =========================
+       ATUALIZAR TELA
+    ========================== */
 
     function atualizarTela() {
 
       document.getElementById("saldo").textContent =
         "R$ " +
-        saldo.toFixed(2).replace(".", ",");
+        saldo
+          .toFixed(2)
+          .replace(".", ",");
 
       document.getElementById("tempo").textContent =
         tempo;
+
     }
+
+
+    /* =========================
+       GANHAR CENTAVO
+    ========================== */
 
     function ganharCentavo() {
 
@@ -259,7 +288,13 @@
       );
 
       atualizarTela();
+
     }
+
+
+    /* =========================
+       TRABALHAR
+    ========================== */
 
     function trabalhar() {
 
@@ -271,7 +306,13 @@
       );
 
       atualizarTela();
+
     }
+
+
+    /* =========================
+       PESQUISAR
+    ========================== */
 
     function pesquisar() {
 
@@ -283,37 +324,61 @@
 
       numeroTarefa++;
 
-      document.getElementById("pesquisadora").textContent =
+      document.getElementById(
+        "pesquisadora"
+      ).textContent =
         "🟢 Pesquisando oportunidades...";
 
-      document.getElementById("tarefa").textContent =
+      document.getElementById(
+        "tarefa"
+      ).textContent =
         "Analisando o mercado.";
 
-      document.getElementById("atividade").textContent =
+      document.getElementById(
+        "atividade"
+      ).textContent =
         "🔎 Pesquisadora está analisando o mercado.";
 
       setTimeout(function() {
 
-        document.getElementById("pesquisadora").textContent =
+        document.getElementById(
+          "pesquisadora"
+        ).textContent =
           "🟢 Pesquisa concluída.";
 
-        document.getElementById("oportunidade").textContent =
+        document.getElementById(
+          "oportunidade"
+        ).textContent =
           oportunidade;
 
-        document.getElementById("atividade").textContent =
+        document.getElementById(
+          "atividade"
+        ).textContent =
           "🔎 Pesquisadora encontrou uma oportunidade.";
 
-        criarProduto(oportunidade);
+        criarProduto(
+          oportunidade
+        );
 
       }, 3000);
+
     }
+
+
+    /* =========================
+       CRIAR PRODUTO
+    ========================== */
 
     function criarProduto(oportunidade) {
 
-      document.getElementById("criadora").textContent =
+      document.getElementById(
+        "criadora"
+      ).textContent =
         "🟡 Criando produto...";
 
-      document.getElementById("atividade").textContent =
+      document.getElementById(
+        "atividade"
+      ).textContent =
         "✍️ Criadora está desenvolvendo o produto.";
 
       setTimeout(function() {
@@ -322,66 +387,155 @@
           "Produto digital baseado em: " +
           oportunidade;
 
-        document.getElementById("criadora").textContent =
+        document.getElementById(
+          "criadora"
+        ).textContent =
           "🟢 Produto criado.";
 
-        document.getElementById("produto").textContent =
+        document.getElementById(
+          "produto"
+        ).textContent =
           produto;
 
-        document.getElementById("atividade").textContent =
+        document.getElementById(
+          "atividade"
+        ).textContent =
           "✍️ Criadora transformou a oportunidade em produto.";
 
-        criarOferta(produto);
+        criarOferta(
+          produto
+        );
 
       }, 3000);
+
     }
+
+
+    /* =========================
+       CRIAR OFERTA
+    ========================== */
 
     function criarOferta(produto) {
 
-      document.getElementById("vendedora").textContent =
+      document.getElementById(
+        "vendedora"
+      ).textContent =
         "🟡 Preparando oferta...";
 
-      document.getElementById("atividade").textContent =
+      document.getElementById(
+        "atividade"
+      ).textContent =
         "💰 Vendedora está preparando a oferta.";
 
       setTimeout(function() {
 
-        document.getElementById("nomeOferta").textContent =
-          "Oferta " + numeroTarefa;
+        document.getElementById(
+          "nomeOferta"
+        ).textContent =
+          "Oferta " +
+          numeroTarefa;
 
-        document.getElementById("descricaoOferta").textContent =
+        document.getElementById(
+          "descricaoOferta"
+        ).textContent =
           "Uma solução digital criada para ajudar pessoas interessadas em: " +
           produto;
 
-        document.getElementById("precoOferta").textContent =
+        document.getElementById(
+          "precoOferta"
+        ).textContent =
           "R$ 19,90";
 
-        document.getElementById("divulgacao").textContent =
+        document.getElementById(
+          "divulgacao"
+        ).textContent =
           "Conheça esta solução digital e descubra como ela pode ajudar você.";
 
-        document.getElementById("vendedora").textContent =
+        document.getElementById(
+          "vendedora"
+        ).textContent =
           "🟢 Oferta preparada.";
 
         const botao =
-          document.getElementById("botaoComprar");
+          document.getElementById(
+            "botaoComprar"
+          );
 
-        botao.classList.remove("desativado");
+        botao.classList.remove(
+          "desativado"
+        );
 
-        botao.disabled = false;
-
-        document.getElementById("mensagemCompra").textContent =
+        document.getElementById(
+          "mensagemCompra"
+        ).textContent =
           "🛒 Oferta disponível para compra.";
 
-        document.getElementById("atividade").textContent =
+        document.getElementById(
+          "atividade"
+        ).textContent =
           "💰 Oferta pronta para compra.";
 
       }, 3000);
+
     }
+
+
+    /* =========================
+       REGISTRAR COMPRA
+    ========================== */
+
+    function registrarInicioCompra() {
+
+      const compra = {
+
+        data:
+          new Date().toLocaleString(
+            "pt-BR"
+          ),
+
+        produto:
+          document.getElementById(
+            "nomeOferta"
+          ).textContent,
+
+        valor:
+          "R$ 19,90",
+
+        status:
+          "Aguardando pagamento"
+
+      };
+
+      localStorage.setItem(
+        "ultimaCompra",
+        JSON.stringify(compra)
+      );
+
+      document.getElementById(
+        "mensagemCompra"
+      ).textContent =
+        "🛒 Compra iniciada. Aguardando pagamento.";
+
+      document.getElementById(
+        "atividade"
+      ).textContent =
+        "💳 Cliente iniciou uma compra de R$ 19,90.";
+
+      mostrarUltimaCompra();
+
+    }
+
+
+    /* =========================
+       MOSTRAR ÚLTIMA COMPRA
+    ========================== */
 
     function mostrarUltimaCompra() {
 
       const dados =
-        localStorage.getItem("ultimaCompra");
+        localStorage.getItem(
+          "ultimaCompra"
+        );
 
       if (!dados) {
         return;
@@ -390,7 +544,9 @@
       const compra =
         JSON.parse(dados);
 
-      document.getElementById("ultimaCompra").innerHTML = `
+      document.getElementById(
+        "ultimaCompra"
+      ).innerHTML = `
 
         <strong>📦 Última compra</strong>
 
@@ -426,105 +582,58 @@
         }
 
       `;
+
     }
 
-    async function iniciarCompra() {
 
-      const botao =
-        document.getElementById("botaoComprar");
-
-      botao.disabled = true;
-
-      document.getElementById("mensagemCompra").textContent =
-        "⏳ Criando pagamento...";
-
-      try {
-
-        const response = await fetch(
-          "https://maquina-de-centavos-webhook.vercel.app/api/criar-preferência",
-          {
-            method: "GET",
-            cache: "no-store"
-          }
-        );
-
-        if (response.redirected) {
-
-          registrarInicioCompra();
-
-          window.location.href =
-            response.url;
-
-          return;
-        }
-
-        const dados =
-          await response.json();
-
-        if (dados.init_point) {
-
-          registrarInicioCompra();
-
-          window.location.href =
-            dados.init_point;
-
-          return;
-        }
-
-        throw new Error(
-          dados.erro ||
-          "Não foi possível criar o pagamento."
-        );
-
-      } catch (error) {
-
-        console.error(error);
-
-        document.getElementById("mensagemCompra").textContent =
-          "❌ Erro ao criar o pagamento: " +
-          error.message;
-
-        botao.disabled = false;
-      }
-    }
-
-    function registrarInicioCompra() {
-
-      const compra = {
-
-        data:
-          new Date().toLocaleString("pt-BR"),
-
-        produto:
-          document.getElementById("nomeOferta").textContent,
-
-        valor:
-          "R$ 19,90",
-
-        status:
-          "Aguardando pagamento"
-      };
-
-      localStorage.setItem(
-        "ultimaCompra",
-        JSON.stringify(compra)
-      );
-
-      document.getElementById("mensagemCompra").textContent =
-        "🛒 Compra iniciada. Aguardando pagamento.";
-
-      document.getElementById("atividade").textContent =
-        "💳 Cliente iniciou uma compra de R$ 19,90.";
-
-      mostrarUltimaCompra();
-    }
+    /* =========================
+       CLIQUE NO BOTÃO
+    ========================== */
 
     document
       .getElementById("botaoComprar")
       .addEventListener(
         "click",
-        iniciarCompra
+        function() {
+
+          if (
+            this.classList.contains(
+              "desativado"
+            )
+          ) {
+
+            document.getElementById(
+              "mensagemCompra"
+            ).textContent =
+              "⏳ A oferta ainda está sendo preparada.";
+
+            return;
+
+          }
+
+          registrarInicioCompra();
+
+          document.getElementById(
+            "mensagemCompra"
+          ).textContent =
+            "⏳ Abrindo pagamento...";
+
+          /*
+           * Abre diretamente a API.
+           * A API cria a preferência no Mercado Pago
+           * e redireciona para o checkout.
+           */
+
+          window.location.href =
+            "https://maquina-de-centavos-webhook.vercel.app/api/criar-preferencia";
+
+        }
       );
+
+
+    /* =========================
+       VERIFICAR PAGAMENTO
+    ========================== */
 
     async function verificarPagamento() {
 
@@ -539,6 +648,10 @@
         );
 
         if (!response.ok) {
+          console.log(
+            "Status HTTP:",
+            response.status
+          );
           return;
         }
 
@@ -553,18 +666,22 @@
         if (
           dados.aprovado === true &&
           dados.pagamento &&
-          dados.pagamento.status === "aprovado"
+          dados.pagamento.status === "approved"
         ) {
 
           const compraSalva =
-            localStorage.getItem("ultimaCompra");
+            localStorage.getItem(
+              "ultimaCompra"
+            );
 
           if (!compraSalva) {
             return;
           }
 
           const compra =
-            JSON.parse(compraSalva);
+            JSON.parse(
+              compraSalva
+            );
 
           if (
             compra.idPagamento ===
@@ -584,17 +701,24 @@
             JSON.stringify(compra)
           );
 
-          document.getElementById("mensagemCompra").textContent =
+          document.getElementById(
+            "mensagemCompra"
+          ).textContent =
             "✅ Pagamento aprovado!";
 
-          document.getElementById("atividade").textContent =
+          document.getElementById(
+            "atividade"
+          ).textContent =
             "✅ Pagamento de R$ " +
-            Number(dados.pagamento.valor)
+            Number(
+              dados.pagamento.valor
+            )
               .toFixed(2)
               .replace(".", ",") +
             " confirmado pelo Mercado Pago.";
 
           mostrarUltimaCompra();
+
         }
 
       } catch (error) {
@@ -603,8 +727,15 @@
           "Erro ao verificar pagamento:",
           error
         );
+
       }
+
     }
+
+
+    /* =========================
+       VERIFICAR AUTOMATICAMENTE
+    ========================== */
 
     setInterval(
       verificarPagamento,
@@ -613,11 +744,21 @@
 
     verificarPagamento();
 
+
+    /* =========================
+       INICIAR SISTEMA
+    ========================== */
+
     atualizarTela();
 
     mostrarUltimaCompra();
 
     pesquisar();
+
+
+    /* =========================
+       AUTOMAÇÕES
+    ========================== */
 
     setInterval(
       ganharCentavo,
@@ -635,5 +776,4 @@
     );
 
   </script></body></html>
-  
     
